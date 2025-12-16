@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Smart Feeder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile friendly -->
+  <style>
+    html {
+      scroll-padding-top: 190px; /* Prevent sticky header from covering anchor targets */
+    }
+
+    body { 
+      font-family: Arial; 
+      margin: 0; 
+      background: #f4f4f4; 
+      transition: background 0.5s, color 0.5s; 
+      padding-top: 190px; 
+    }
+
+    #topbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #222;
+      color: #fff;
+      z-index: 9999;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      animation: slideDown 1s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    header { text-align: center; padding: 20px; }
+    nav { background: #444; text-align: center; padding: 10px; }
+
+    nav a {
+      color: white; 
+      margin: 15px; 
+      text-decoration: none; 
+      font-weight: bold; 
+      transition: color 0.3s;
+      display: inline-block;
+    }
+
+    nav a:hover { 
+      text-decoration: underline; 
+      color: orange; 
+    }
+	
+    section { 
+      padding: 50px; 
+      max-width: 1000px; 
+      margin: auto; 
+      background: white; 
+      margin-top: 20px; 
+      border-radius: 10px; 
+    }
+
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+    }
+
+    th, td { 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      text-align: center; 
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: orange;
+      text-decoration: underline;
+    }
+
+    textarea, input, select { 
+      width: 100%; 
+      padding: 10px; 
+      margin-top: 10px; 
+    }
+
+
+    progress { width: 100%; height: 20px; }
+
+    blockquote { 
+      font-style: italic; 
+      color: #555; 
+      border-left: 5px solid #ccc; 
+      padding-left: 10px; 
+    }
+
+    .dark-mode { background: #222; color: #eee; }
+    .dark-mode section { background: #333; color: #eee; }
+	
+    h1, h2, h3, h4, h6 { animation: fadeIn 2s ease-in; }
+
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+    /* Mobile Friendly Nav */
+    @media (max-width: 500px) {
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+	textarea {
+      width: 100%;
+      height: 600px;
+      font-family: monospace;
+      font-size: 14px;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 10px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+	footer {
+  background-color: #f4f4f4;
+  color: #000;
+  border-top: 1px solid #ccc;
+}
+
+.dark-mode footer {
+  background-color: #333;
+  color: #eee;
+}
+
+	
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <header>
+    <h1>Smart Feeder</h1>
+    
+    <button onclick="toggleDarkMode()" style="padding:10px; background:orange; color:white; border:none; cursor:pointer; border-radius:5px;">Toggle Dark / Light Mode</button>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+	<a href="#Usage">Usage</a>
+    <a href="#MR">Materials Required</a>
+    <a href="#Code">Code</a>
+    
+  </nav>
+</div>
+
+<section id="home" style="text-align:center; background:#333; color:white;">
+  <h1>Welcome to the Smart Feeder webpage</h1>
+  <p>Click below to explore the details of this project</p>
+  <a href="#Usage" style="background:red; color:white; padding:15px; text-decoration:none; border-radius:5px;">Start Exploring</a>
+</section>
+
+<section id="Usage">
+  <h3><strong>Usage</strong></h3>
+  <p>Many times people get <b>busy and do not have time to feed their pets</b>, thereby often leaving their pets hungry</p>
+  <p>That is why I created this Smart feeder.</p>
+  <h3><p><strong>Working</strong></p></h3>
+  <p>Ultrasonic Sensor detects the pet by sending out Ultrasonic Waves. When the waves are reflected back at the required distance, the signal is sent to the Arduino UNO, which activates the Servo Motor. The motor opens the flap, releasing food into the container, ready for the pet to eat.”</p>
+</section>
+
+<section id="MR">
+  <h2><strong>Materials Required</strong></h2>
+
+  <table>
+    <tr><th>Component</th><th>Sections</th><th>Usage/Working</th><th>Model</th></tr>
+    <tr><td>Arduino</td><td>Digital pins, Analog pins, Power Pins</td><td>Arduino is an open-source electronics platform based on easy-to-use hardware and software.It is also known as <i>'the brain of the robot'.</i></td><td> UNO </tr>
+    <tr><td>Ultrasonic sensor</td><td>GND, VCC, Echo, Trig</td><td>Ultrasonic sensors are electronic devices that determine a targets distance. They work by emitting ultrasonic sound waves and converting those waves into electrical signals.</td><td>HC-SR04</tr>
+    <tr><td>Servo Motor</td><td>VCC(Red), GND(Brown), Signal(Yellow)</td><td>A servo motor is defined as a linear or rotary type of actuator that provides fast precision position control for closed-loop position control applications.</td><td>MG90S</td></tr>
+  </table><br>
+ 
+ <h2><strong>Connections</strong></h2>
+ <table>
+ <tr><th><strong>Ultrasonic Sensor</strong></th><th><strong>to</strong></th><th><strong>Arduino</strong></th></tr>
+ <tr><td>VCC</td><td>to</td><td>Vin</td></tr>
+ <tr><td>GND</td><td>to</td><td>GND</td></tr>
+ <tr><td>Trig</td><td>to</td><td>D12</td></tr>
+ <tr><td>Echo</td><td>to</td><td>D13</td></tr>
+ </table>
+ <br>
+ <hr>
+ <br>
+ <table>
+ <tr><th><strong>Servo Motor</strong></th><th><strong>to</strong></th><th><strong>Aurduino</strong></th></tr>
+ <tr><td>VCC</td><td>to</td><td>5V</td></tr>
+ <tr><td>GND</td><td>to</td><td>GND</td></tr>
+ <tr><td>Signal</td><td>to</td><td>D9</td></tr>
+ </table>
+ <br>
+<hr>
+<br>
+
+<img src="https://rawcdn.githack.com/abdullahsami1-ctrl/Omar16Dec2025_PetFeederCircuit/e2925e38f91bbc66fecb6a96bc2feb0042d88496/02b_PF_Diagram.jpg" alt="Circuit of Automated pet feeder" width="500" height="300">
+</section>
+
+<section id="Code">
+<h1><strong>Code</strong></h1>
+<h3>Rules for the Code</h3>
+<ol>
+<li>Copy and paste this code in the Arduino IDE.</li>
+<li>Connect the Adruino board to your computer throught the Adruino USB Cable.</li>
+<li>Check the code by clicking on the Verify button(✅).</li>
+<li>Execute the code by clicking on the Upload button(➡️).</li>
+</ol>
+<h4>If you want to run the project using a battery, first upload the code, then connect a 9‑volt battery to the board using a battery cap.</h4>
+<br>
+<h2>Code<h2>
+
+<h2>Smart Feeder Arduino Code</h2>
+
+<textarea id="codeBox" readonly style="width:100%; height:600px; font-family:monospace; font-size:14px; background:#f4f4f4; color:#333; padding:10px; border:1px solid #ccc; resize:none;">
+#include <Servo.h>
+
+Servo myServo;
+const int trigPin = 12;
+const int echoPin = 13;
+const int minDistance = 20;  // cm - trigger threshold
+const int debounceDelay = 200; // ms - anti-jitter filter
+unsigned long lastTrigger = 0;
+bool servoActive = false;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  myServo.attach(9);
+  myServo.writeMicroseconds(0);  // Precise 0° (1000µs pulse). 10 was also working
+  delay(1000);  // Stabilize servo
+}
+
+void loop() {
+  unsigned long currentTime = millis();
+  int distance = getDistance();
+  
+  // Debounce logic - ignore triggers within debounceDelay
+  if (distance < minDistance && !servoActive && 
+      (currentTime - lastTrigger > debounceDelay)) {
+    
+    Serial.println("Object detected - Activating servo");
+    lastTrigger = currentTime;
+    
+    // Precise move to 35° (1340µs pulse width for SG90) - Angle to feed the pet can be adjusted
+    myServo.writeMicroseconds(750);
+    servoActive = true;
+    
+    // Wait exactly 1 second using non-blocking delay
+    delay(1500);
+    
+    // Return to precise 0°
+    myServo.writeMicroseconds(0);
+    servoActive = false;
+    
+    delay(20000);  // Brief settle time
+  }
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  
+  delay(50);  // Stable sensor refresh rate
+}
+
+int getDistance() {
+  // Clear trig
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  
+  // Trigger pulse
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // Read echo with timeout
+  long duration = pulseIn(echoPin, HIGH, 30000);  // 30ms timeout
+  
+  if (duration == 0) return 999;  // Invalid reading
+  
+  return duration * 0.034 / 2;
+}
+</textarea>
+
+<!-- Copy Button -->
+<button onclick="copyCode()" style="margin-top:10px; padding:10px; background:red; color:white; border:none; border-radius:5px; cursor:pointer;">
+  Copy All
+</button>
+
+<script>
+function copyCode() {
+  var codeBox = document.getElementById("codeBox");
+  codeBox.select();
+  codeBox.setSelectionRange(0, 99999); // For mobile devices
+  navigator.clipboard.writeText(codeBox.value).then(function() {
+    alert("Code copied to clipboard!");
+  });
+}
+</script>
+</section>
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
+
+<section id="Finishing" style="text-align:center; background:#333; color:white;">
+  <h1>I hope you now understand how the Smart Feeder project works.</h1>
+  <p>Click below to explore more details about the Smart Sight project.</p>
+  <a href="https://rawcdn.githack.com/abdullahsami1-ctrl/Omar16Dec2025_GlassHTML/91141bcf6b5f45e969ae505eaf18b1ed8ac2182e/03a_Glasses.html"><b> Click here </b> </a>
+</section>
+<footer>
+  <div style="padding:10px; text-align:center;" id="footerContent">
+    <p>© All rights reserved</p>
+    <p><strong>By: Md Omar Abdullah, VII A</strong></p>
+  </div>
+</footer>
+
+
+</body>
+</html>
